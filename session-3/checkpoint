@@ -1,2 +1,5 @@
-model_checkpoint_path: "model.ckpt"
-all_model_checkpoint_paths: "model.ckpt"
+model_checkpoint_path: "airplanes.ckpt-40"
+all_model_checkpoint_paths: "airplanes.ckpt-10"
+all_model_checkpoint_paths: "airplanes.ckpt-20"
+all_model_checkpoint_paths: "airplanes.ckpt-30"
+all_model_checkpoint_paths: "airplanes.ckpt-40"
