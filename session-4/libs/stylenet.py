@@ -161,8 +161,11 @@ def stylize(content_img, style_img, base_img=None, saveto=None, gif_step=5,
             print("iteration %d, loss: %f, range: (%f - %f)" %
                   (it_i, this_loss, np.min(synth), np.max(synth)), end='\r')
             if it_i % gif_step == 0:
+                print('Appending Imgs')
                 imgs.append(np.clip(synth[0], 0, 1))
+            print('value of save to' + str(saveto))
         if saveto is not None:
+            print('Saving gif')
             gif.build_gif(imgs, saveto=saveto)
     return np.clip(synth[0], 0, 1)
 
@@ -296,20 +299,13 @@ def test_video(style_img='arles.png', videodir='kurosawa',
 
 def test():
     """Test for artistic stylization."""
-    from six.moves import urllib
-    f = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/' +
-         'Claude_Monet%2C_Impression%2C_soleil_levant.jpg/617px-Claude_Monet' +
-         '%2C_Impression%2C_soleil_levant.jpg?download')
-    filepath, _ = urllib.request.urlretrieve(f, f.split('/')[-1], None)
-    style = plt.imread(filepath).astype(np.float32) / 255.0
+    
+    style = plt.imread('.\kurosawa\kurosawa-dreams 004.png').astype(np.float32) / 255.0
 
-    f = ('https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/' +
-         'El_jard%C3%ADn_de_las_Delicias%2C_de_El_Bosco.jpg/640px-El_jard' +
-         '%C3%ADn_de_las_Delicias%2C_de_El_Bosco.jpg')
-    filepath, _ = urllib.request.urlretrieve(f, f.split('/')[-1], None)
-    content = plt.imread(filepath).astype(np.float32) / 255.0
+    
+    content = plt.imread('image.jpg').astype(np.float32) / 255.0
 
-    stylize(content, style, n_iterations=20)
+    stylize(content, style, n_iterations=20, saveto='stylenet_test.gif')
 
 
 if __name__ == '__main__':
